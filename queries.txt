@@ -1,0 +1,27 @@
+[[1, "Cypress"],
+[2, "ActiveAdmin"],
+[3, "Pantheon"],
+[4, "Android"],
+[5, "MiniTest"],
+[6, "Rspec"],
+[7, "Kafka"],
+[8, "Graphql"],
+[9, "MongoDb"],
+[10, "Docker"],
+[11, "Heroku"],
+[12, "S3"],
+[14, "MPAndroidChart"],
+[15, "ElasticBeanStalk"]]
+
+conditions = [{tool_id:[1], level:[1,2]}]
+conditions = [
+{tool_id:[1], level:[1,2]},
+[{tool_id:[5], level:[1,2]},{tool_id:[3], level:[1,5]}]]
+
+SELECT *
+FROM "members"
+INNER JOIN "confidence_levels" ON "confidence_levels"."member_id" = "members"."id"
+INNER JOIN "tools" ON "tools"."id" = "confidence_levels"."tool_id"
+WHERE (((tools.id in (1) and confidence_levels.confidence_level between 1 and 5)  OR (tools.id in (3) and confidence_levels.confidence_level between 1 and 5) )) ORDER BY "tool" ASC, "level" DESC
+
+SELECT * FROM "members" INNER JOIN "confidence_levels" ON "confidence_levels"."member_id" = "members"."id" INNER JOIN "tools" ON "tools"."id" = "confidence_levels"."tool_id" WHERE ((tools.id in (1, 3) and confidence_levels.confidence_level between 1 and 2)) ORDER BY "tool" ASC, "level" DESC
