@@ -1,24 +1,34 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##Rails propotype of libraty/frameworks internal project
 
-Things you may want to cover:
+### How to use:
 
-* Ruby version
+- After create migrate and seed
 
-* System dependencies
+Queries can be done using Member Model method get_members(params)
 
-* Configuration
+Where params is an Array of hashes with :
 
-* Database creation
+tool_ids and confidence levels
 
-* Database initialization
+[ {tool_id:[1], confidennce_level[1,5]}]
 
-* How to run the test suite
+in this case it will return all members who knows "Cypress", with connfidennce level between 1 and 5
 
-* Services (job queues, cache servers, search engines, etc.)
+[ {tool_id:[1, 2], confidennce_level[1,5]}]
 
-* Deployment instructions
+in this case it will return all members who knows "Cypress OR ActiveAdmin", with connfidennce level between 1 and 5
 
-* ...
+[ {tool_id:[1], confidennce_level[1,5]}, {tool_id:[2], confidennce_level[5,5]} ]
+
+in this case it will return all members who knows "Cypress", with connfidennce level between 1 and 5 OR ActiveAdmin with level 5.
+
+[[{tool_id:[1], confidennce_level[5,5]}, {tool_id:[2], confidennce_level[5,5]}] ]
+
+in this case it will return all members who knows "Cypress AND ActiveAdmin", with connfidennce te respective confidence level.
+
+[ {tool_id:[1], confidennce_level[1,5]} , [{tool_id:[2], confidennce_level[5,5]}, {tool_id:[3], confidennce_level[5,5]}] ]
+
+in this case it will return all members who knows "Cypress" OR All members who knows ActiveAdmoin AND Phanteon, with connfidennce te respective confidence level.
+
